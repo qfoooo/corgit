@@ -1,7 +1,9 @@
 const path = require('path')
 const gitLoader = require("../git")
 
-module.exports = args => {
+module.exports = async args => {
   const git = gitLoader(path.resolve("."))
-  console.log(git)
+  await git.checkout("develop") // TODO: change with something configurable
+  await git.fetch()
+  await git.rebase()
 }

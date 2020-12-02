@@ -17,5 +17,7 @@
     "url": "https://github.com/qfoooo/corgit/issues"
   },
   "homepage": "https://github.com/qfoooo/corgit#readme",
-  "dependencies": {}
+  "dependencies": {
+    "chalk": "^4.1.0"
+  }
 }
