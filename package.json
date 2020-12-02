@@ -16,5 +16,6 @@
   "bugs": {
     "url": "https://github.com/qfoooo/corgit/issues"
   },
-  "homepage": "https://github.com/qfoooo/corgit#readme"
+  "homepage": "https://github.com/qfoooo/corgit#readme",
+  "dependencies": {}
 }
