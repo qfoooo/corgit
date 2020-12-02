@@ -1,0 +1,20 @@
+{
+  "name": "corgit",
+  "version": "0.0.0",
+  "description": "Supercharge your git processes",
+  "main": "index.js",
+  "bin": {
+    "cg": "./bin/cg.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qfoooo/corgit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qfoooo/corgit/issues"
+  },
+  "homepage": "https://github.com/qfoooo/corgit#readme"
+}
