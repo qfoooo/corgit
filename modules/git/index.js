@@ -1,5 +1,6 @@
 const { exec: sysExec } = require('child_process')
 const chalk = require("chalk")
+const history = require("./history")
 
 const exec = (...args) => new Promise((resolve, reject) => {
   sysExec(...args, (err, stdout, stderr) =>
@@ -24,6 +25,12 @@ const fetch = () => gitExec("fetch")
 const checkout = branch => gitExec(`checkout ${branch}`)
 const rebase = () => gitExec("rebase")
 
+const log = async (from = "", to = "") => {
+  const range = from !== "" || to !== "" ? `${from}...${to}` : ""
+  const logs = await gitExec(`log ${range} --decorate=full`)
+  return history.parse(logs)
+}
+
 module.exports = path => ({
   /** Gets the config of the git module
    */
@@ -31,4 +38,5 @@ module.exports = path => ({
   fetch,
   checkout,
   rebase,
+  log,
 })

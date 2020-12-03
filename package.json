@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/qfoooo/corgit#readme",
   "dependencies": {
-    "chalk": "^4.1.0"
+    "chalk": "^4.1.0",
+    "luxon": "^1.25.0"
   }
 }
