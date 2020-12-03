@@ -6,26 +6,28 @@ const getCommit = client => repo => async commit => {
 
 const getPrFromCommit = client => repo => async commit => {
   const cm = await getCommit(client)(repo)(commit)
-  const pr = await client.post("/graphql", {
-    query: `
-      query {
-        node(id:"${cm.node_id}") {
-          ... on Commit {
-            message
-            associatedPullRequests(first: 5) {
-              nodes {
-                ... on PullRequest {
-                  id
-                  url
-                  title
-                  timelineItems(itemTypes: CONNECTED_EVENT, last: 1) {
-                    nodes {
-                      ... on ConnectedEvent {
-                        subject {
-                          ... on Issue {
-                            id
-                            url
-                            title
+  try {
+    const pr = await client.post("/graphql", {
+      query: `
+        query {
+          node(id:"${cm.node_id}") {
+            ... on Commit {
+              message
+              associatedPullRequests(first: 5) {
+                nodes {
+                  ... on PullRequest {
+                    id
+                    url
+                    title
+                    timelineItems(itemTypes: CONNECTED_EVENT, last: 1) {
+                      nodes {
+                        ... on ConnectedEvent {
+                          subject {
+                            ... on Issue {
+                              id
+                              url
+                              title
+                            }
                           }
                         }
                       }
@@ -36,15 +38,18 @@ const getPrFromCommit = client => repo => async commit => {
             }
           }
         }
-      }
-    `
-  }).then(d => d.data.data.node)
-  return {
-    ...pr,
-    associatedPullRequests: pr.associatedPullRequests.nodes.map(node => ({
-      ...node,
-      timelineItems: node.timelineItems.nodes.map(n => n.subject)
-    }))
+      `
+    }).then(d => d.data.data.node)
+    return {
+      ...pr,
+      associatedPullRequests: pr.associatedPullRequests.nodes.map(node => ({
+        ...node,
+        timelineItems: node.timelineItems.nodes.map(n => n.subject)
+      }))
+    }
+  }
+  catch (e) {
+    console.error(e.response.status)
   }
 }
 

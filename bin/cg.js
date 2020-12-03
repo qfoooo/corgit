@@ -9,7 +9,7 @@ const usage = () => {
   console.log("Usage: cg [command] [args]")
   console.log("")
   console.log("Commands:")
-  console.log("release  Creates a release for the current git repository")
+  console.log("bump  bumps the version according to commits &  generate a changelog")
 }
 
 // command definitions
@@ -17,7 +17,7 @@ const commands = {
   _: usage,
   usage,
   help: usage,
-  release: require("../modules/release")
+  bump: require("../modules/bump")
 }
 
 const run = commands[args.command] || commands._

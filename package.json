@@ -20,6 +20,7 @@
   "dependencies": {
     "axios": "^0.21.0",
     "chalk": "^4.1.0",
-    "luxon": "^1.25.0"
+    "luxon": "^1.25.0",
+    "semver": "^7.3.4"
   }
 }

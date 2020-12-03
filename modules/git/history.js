@@ -44,7 +44,7 @@ module.exports.parse = logs => {
       commit.parents = line.slice(7).split(" ")
     else if (line.startsWith("    "))
       commit.body.push(line.slice(4))
-    else
+    else if (line !== "")
       console.log(line)
   }
   commit.body = commitParser.parse(commit.body)
