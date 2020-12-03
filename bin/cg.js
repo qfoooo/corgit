@@ -1,4 +1,6 @@
 #!/usr/bin/env node
+const path = require("path")
+const config = require(path.resolve(process.env.HOME, ".corgit", "config.json"))
 
 // parses the arguments in a corgit object
 const args = require("../modules/argv")(process.argv)
@@ -19,4 +21,4 @@ const commands = {
 }
 
 const run = commands[args.command] || commands._
-run(args)
+run(args, config)
