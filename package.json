@@ -1,6 +1,6 @@
 {
   "name": "corgit",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Supercharge your git processes",
   "main": "index.js",
   "bin": {
